@@ -1,4 +1,5 @@
 import express from "express";
+import "express-async-errors";
 import { AppDataSource } from "./data-source";
 import { errorMiddleware } from "./middleware/error";
 import routes from "./routes";

@@ -1,0 +1,152 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Api de cadastro de Aulas",
+      "description": "API para cadastro de aulas",
+      "version": "1.0",
+      "termsOfService": "http://localhost:5000/terms",
+      "contact": {
+        "email": "ewerton.lfb@gmail.com",
+        "name": "Ewerton Luiz Felix Barbosa"
+      },
+      "license": {"name": "Mit","url": "http://google.com"}
+    },
+    "servers": [{
+        "url": "http:localhost:5000/v1",
+        "description": "Api de teste"
+    }],
+    "paths": {
+        "/user":{
+            "post":{
+                "summary": "Adicionar usuario",
+                "description": "Cadastro de usuarios da aplicação",
+                "tags": ["Usuarios"],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400":{"description": "Usuario ja cadastrado"},
+                    "201":{"description": "Usuario cadastrado com sucesso",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref":"#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "500":{"description": "Erro Interno de Servidor"}
+                }
+            }
+        },
+        "/room":{
+            "get":{
+                "description": "Buscar Salas",
+                "summary": "Busca e listagem de Salas",
+                "security": [{"bearerAuth":[]}],
+                "tags": ["Rooms"],
+                "responses": {
+                    "200":{"description": "Salas disponiveis",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref":"#/components/schemas/Room"
+                                }
+                            }
+                        }
+                    },
+                    "401":{"description": "Usuario não autorizado"},
+                    "500":{"description": "Erro Interno de Servidor"}
+                }
+            }
+        },
+        "/room/{idRoom}/create":{
+            "post":{
+                "description": "Criação de video",
+                "summary": "Criação de Video",
+                "tags": ["Video"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id da sala",
+                        "required": true
+                    }
+                ],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            
+                        }
+                    }
+                },
+                "responses": {
+                    "500":{"description": "Erro Interno de Servidor"}
+                }
+            }
+        },
+        "/profile":{
+            "get":{
+                "description": "Obter usuarios cadastrados",
+                "summary": "Pegar perfis dos usuarios",
+                "tags": ["Usuarios"],
+                "responses": {
+                    "400":{"description": "Sem usuarios cadastrados"},
+                    "200":{
+                        "description": "Usuarios cadastrados",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref":"#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            
+        }
+    },
+    "components": {
+        "schemas": {
+            "User":{
+                "type": "object",
+                "properties": {
+                    "id":{"type": "number"},
+                    "name":{"type": "string"},
+                    "email":{"type": "string"},
+                    "password":{"type": "string"}
+                }
+            },
+            "Room":{
+                "type": "object",
+                "properties": {
+                    "id":{"type": "number"},
+                    "name":{"type": "string"},
+                    "description":{"type": "string"}
+                }
+            },
+            "Subject":{},
+            "Video":{}
+        },
+        "securitySchemes": {
+            "bearerAuth":{
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "description": "Bearer + Token"
+            }
+        }
+    }
+    
+}

@@ -16,7 +16,7 @@
     "strictPropertyInitialization": false,             /* Check for class properties that are declared but not set in the constructor. */
     "typeRoots": ["./src/@types"]
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "swagger.js"],
   "exclude": ["node_modules", "dist"],
   "ts-node": {
     "files": true

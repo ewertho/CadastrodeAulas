@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { AccessController } from "./controllers/AccessController";
 import { RoomController } from "./controllers/RoomController";
-import { SubjectController } from "./controllers/SubjectControllers";
+import { SubjectController } from "./controllers/SubjectController";
 import { UserController } from "./controllers/UserController";
 import { AuthMiddleware } from "./middleware/authMiddleware";
 

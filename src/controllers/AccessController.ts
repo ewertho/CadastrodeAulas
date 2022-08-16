@@ -30,17 +30,6 @@ export class AccessController {
   }
 
   async getProfile(req: Request, res: Response) {
-    // const { authorization } = req.headers;
-    // if (!authorization) {
-    //   throw new UnauthorizedError("Não autorizado!");
-    // }
-    // const token = authorization.split(" ")[1];
-    // const { id } = jwt.verify(token, process.env.JWT_PASS ?? "") as JwtPayload;
-    // const userExist = await userRepository.findOneBy({ id });
-    // if (!userExist) {
-    //   throw new UnauthorizedError("Não autorizado!");
-    // }
-    // const { password: _, ...loggedUser } = userExist;
     return res.json(req.user);
   }
 }

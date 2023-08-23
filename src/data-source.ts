@@ -6,6 +6,7 @@ const port = process.env.DB_PORT as number | undefined;
 
 export const AppDataSource = new DataSource({
   type: "postgres",
+  url: process.env.DB_URI,
   // type: "sqlite",
   host: process.env.DB_HOST,
   port: port,

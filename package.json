@@ -9,7 +9,7 @@
     "migration:run": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:run",
     "build": "rm -rf ./dist && tsc",
     "start": "node ./dist/index.js",
-    "vercel-build": "npx typeorm-ts-node-commonjs migration:run -- -d ./src/data-source.ts"
+    "vercel-build": "npx migration:run"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

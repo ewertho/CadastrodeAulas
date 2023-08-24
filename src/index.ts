@@ -9,6 +9,7 @@ const swaggerFile = require("./../swagger.json");
 AppDataSource.initialize().then(() => {
   const app = express();
   app.use(express.json());
+  app.use(express.static(__dirname + "/public"));
   var options = {
     customSiteTitle: "Cadastro de Aulas",
     customCssUrl: "/assets/styles/custom.css",

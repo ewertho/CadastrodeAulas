@@ -11,9 +11,7 @@ AppDataSource.initialize().then(() => {
   app.use(express.json());
   var options = {
     customSiteTitle: "Cadastro de Aulas",
-
-    customJs: "/assets/scripts/custom.js",
-    customCssUrl: "/assets/styles/custom.css",
+    customCss: ".swagger-ui .topbar { color:blue, backgroundcolor:red }",
   };
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile, options));
   app.use("/v1", routes);

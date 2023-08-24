@@ -3,18 +3,17 @@ import "express-async-errors";
 import { AppDataSource } from "./data-source";
 import { errorMiddleware } from "./middleware/error";
 import routes from "./routes";
-import "swagger-ui-themes/themes/3.x/theme-flattop.css";
 const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("./../swagger.json");
 
 AppDataSource.initialize().then(() => {
   const app = express();
   app.use(express.json());
-  // var options = {
-  //   customSiteTitle: "Cadastro de Aulas",
-  //   customCss: ".swagger-ui .topbar { color:#FFFF; backgroundcolor:#0000 }",
-  // };
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+  var options = {
+    customSiteTitle: "Cadastro de Aulas",
+    customCssUrl: "/assets/styles/custom.css",
+  };
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile, options));
   app.use("/v1", routes);
   app.use(errorMiddleware);
   return app.listen(process.env.PORT, () => {

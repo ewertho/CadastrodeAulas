@@ -9,7 +9,11 @@ import swaggerFile from "./../swagger.json";
 AppDataSource.initialize().then(() => {
   const app = express();
   app.use(express.json());
-  // app.use(express.static(__dirname + "/public"));
+  // Redirecionar a rota inicial para "/api-docs"
+  app.get("/", (req, res) => {
+    res.redirect("/api-docs");
+  });
+
   var options = {
     customSiteTitle: "Cadastro de Aulas",
     customCssUrl:
